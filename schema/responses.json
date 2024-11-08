@@ -1,0 +1,33 @@
+{
+  "NotModified": {
+    "description": "The specified resource has not been modified since last provided revision number or date",
+    "headers": {
+      "ETag": {
+        "description": "Last entity revision number",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      }
+    }
+  },
+  "ResourceNotFound": {
+    "description": "The specified resource was not found",
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "./response-parts.json#/Error"
+        }
+      }
+    },
+    "headers": {
+      "Content-Language": {
+        "description": "Language code of the language in which error message is provided",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      }
+    }
+  }
+}

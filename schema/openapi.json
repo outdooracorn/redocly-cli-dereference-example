@@ -1,0 +1,71 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Redocly CLI Dereference Example",
+    "version": "0.1.0",
+    "description": "An example OpenAPI definition to demonstrate an issue with the `redocly bundle --dereferenced` command"
+  },
+  "paths": {
+    "/statements/{statement_id}": {
+      "get": {
+        "operationId": "getStatement",
+        "summary": "Retrieve a single statement",
+        "parameters": [
+          { $ref: "./parameters.json#/StatementId" },
+          { $ref: "./parameters.json#/IfNoneMatch" },
+          { $ref: "./parameters.json#/IfModifiedSince" },
+          { $ref: "./parameters.json#/IfMatch" },
+          { $ref: "./parameters.json#/IfUnmodifiedSince" }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested Statement",
+            "headers": {
+              "ETag": {
+                "description": "Last entity revision number",
+                "schema": {
+                  "type": "string"
+                },
+                "required": true
+              },
+              "Last-Modified": {
+                "description": "Last modified date",
+                "schema": {
+                  "type": "string"
+                },
+                "required": true
+              },
+              "X-Authenticated-User": {
+                "description": "Optional username of the user making the request",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas.json#/Statement"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "./responses.json#/NotModified"
+          },
+          "404": {
+            "$ref": "./responses.json#/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "$ref": "./responses.json"
+    },
+    "schemas": {
+      "$ref": "./schemas.json"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "Statement": {
+    "allOf": [
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The globally unique identifier of this Statement",
+            "type": "string",
+            "readOnly": true
+          },
+          "rank": {
+            "description": "The rank of the Statement",
+            "type": "string",
+            "enum": [
+              "deprecated",
+              "normal",
+              "preferred"
+            ],
+            "default": "normal"
+          }
+        }
+      },
+      {
+        "$ref": "./schema-parts.json#/PropertyValuePair"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "qualifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/Qualifier"
+            },
+            "default": []
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "$ref": "#/Reference"
+            },
+            "default": []
+          }
+        }
+      }
+    ]
+  },
+  "Qualifier": {
+    "$ref": "./schema-parts.json#/PropertyValuePair"
+  },
+  "Reference": {
+    "type": "object",
+    "properties": {
+      "hash": {
+        "description": "Hash of the Reference",
+        "type": "string",
+        "readOnly": true
+      },
+      "parts": {
+        "type": "array",
+        "items": {
+          "$ref": "./schema-parts.json#/PropertyValuePair"
+        }
+      }
+    }
+  }
+}

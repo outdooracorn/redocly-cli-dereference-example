@@ -1,0 +1,10 @@
+{
+    "name": "redocly-cli-dereference-example",
+    "version": "0.1.0",
+    "engines": {
+        "node": ">=18"
+    },
+    "devDependencies": {
+        "@redocly/cli": "^1.25.11"
+    }
+}
